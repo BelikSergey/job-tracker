@@ -1,24 +1,37 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
-
 @AGENTS.md
-
-## Project state
-
-`job-tracker` is a freshly bootstrapped `create-next-app` project (App Router, TypeScript, Tailwind). No domain code, data layer, or tests exist yet — `src/app/page.tsx` is still the starter page and `layout.tsx` still has the default metadata.
 
 ## Commands
 
-npm is the package manager (`package-lock.json`).
+- Package manager: npm (don't use pnpm/yarn)
 
-- `npm run dev` — dev server at http://localhost:3000 (Turbopack)
-- `npm run build` — production build; also the main type-check gate
-- `npm run start` — serve the production build
-- `npm run lint` — ESLint 9 flat config (`eslint.config.mjs`, `core-web-vitals` + `typescript` presets)
-- `npx tsc --noEmit` — type-check only
+- `npm run dev` — dev server at http://localhost:3000
+- `npm run check` — lint + typecheck + format:check + test. **Run before saying a task is done.**
+- `npm run test` — unit tests once; `npm run test:watch` — watch mode (don't run it, it never exits)
+- `npm run format` — fix formatting (use this, not npx prettier)
+- `npm run build` — production build
 
-No test runner is configured.
+Testing: Vitest + React Testing Library + jest-dom matchers, jsdom environment (`vi.*`, not `jest.*`). Linting: ESLint 9 flat config + Prettier.
+
+## Product
+
+Personal job-search tracker: add a vacancy by pasting its text, AI parses it into
+structured fields, matches it against my CV, and tracks the application funnel
+(found → applied → HR → tech → offer / rejected).
+
+## Conventions
+
+- No `any`: use `unknown` and narrow it
+- Tests live next to the file: `Component.test.tsx`
+- Use `@/` imports, not relative `../../`
+
+## Workflow
+
+- For changes touching more than 2 files, propose a plan first
+- Never install dependencies without asking
+- Never read or print `.env*` files
+- Don't commit unless I ask
 
 ## Stack and versions
 
