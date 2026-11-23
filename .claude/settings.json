@@ -9,14 +9,22 @@
       "Bash(npm run check)",
       "Bash(npm run build)",
       "Bash(git diff *)",
-      "Bash(git log *)"
+      "Bash(git log *)",
+      "Bash(npm run db:generate)"
     ],
-    "ask": ["Bash(git push *)", "Bash(npm install *)", "Bash(npm i *)"],
+    "ask": [
+      "Bash(git push *)",
+      "Bash(npm install *)",
+      "Bash(npm i *)",
+      "Bash(npm run db:migrate)",
+      "Bash(npm run db:seed)"
+    ],
     "deny": [
       "Read(./.env)",
       "Read(./.env.*)",
       "Bash(git push --force *)",
-      "Bash(rm -rf *)"
+      "Bash(rm -rf *)",
+      "Bash(npx drizzle-kit push *)"
     ]
   }
 }

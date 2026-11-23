@@ -11,8 +11,20 @@
 - `npm run test` — unit tests once; `npm run test:watch` — watch mode (don't run it, it never exits)
 - `npm run format` — fix formatting (use this, not npx prettier)
 - `npm run build` — production build
+- `npm run db:generate` — generate a SQL migration from the schema
+- `npm run db:migrate` — apply migrations to the database (needs my approval)
+- `npm run db:seed` — seed demo data (empty database only)
+- `npm run db:studio` — Drizzle Studio (long-running, I run it myself)
 
 Testing: Vitest + React Testing Library + jest-dom matchers, jsdom environment (`vi.*`, not `jest.*`). Linting: ESLint 9 flat config + Prettier.
+
+## Database
+
+- Drizzle ORM + Neon Postgres. Schema: `src/db/schema.ts`, client: `src/db/index.ts` (server-only)
+- Drizzle is on the stable 0.x line (drizzle-orm 0.45, drizzle-kit 0.31), not v1/rc — check APIs against the installed version, not the latest docs
+- Schema change = edit schema → `npm run db:generate` → show me the SQL → I approve `npm run db:migrate`
+- Never edit generated migrations in `drizzle/` by hand; never use `drizzle-kit push`
+- Seed only runs on an empty database; there is no reset
 
 ## Product
 
